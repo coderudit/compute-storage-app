@@ -6,7 +6,7 @@ const { uploadRobData } = require("./s3");
 const beginRequest = async () => {
   const data = {
     banner: "B00889579",
-    ip: "127.0.0.1",
+    ip: "3.88.132.229",
   };
   try {
     let response = await axios.post("http://localhost:8000/begin", data, {

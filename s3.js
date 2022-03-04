@@ -22,7 +22,7 @@ const uploadRobData = (file) => {
 
   let s3_dataLocation;
 
-  s3_Instance.upload(uploadParams, function (err, data) {
+  s3_dataLocation = s3_Instance.upload(uploadParams, function (err, data) {
     if (err) {
       console.log("Error", err);
     }
