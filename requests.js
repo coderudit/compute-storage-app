@@ -32,11 +32,11 @@ const storeDataInS3 = async (req, res) => {
       filename: "rob.txt",
     };
 
-    uploadRobData(file);
+    let s3_dataLocation = uploadRobData(file);
   } catch (err) {
     console.error(err);
   }
-  return res.status(StatusCodes.OK).send({ location: s3_dataLocation });
+  return res.status(StatusCodes.OK).send({ s3_uri: s3_dataLocation });
 };
 
 const createFileWithRobData = async (data) => {

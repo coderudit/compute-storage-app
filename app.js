@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use("/", router);
 
-app.listen(8080, () => {
+app.listen(6000, () => {
   console.log("Compute and Storage app started.");
 
   //Post request to Rob's server
