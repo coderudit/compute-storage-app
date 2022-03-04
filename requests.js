@@ -9,7 +9,7 @@ const beginRequest = async () => {
     ip: "3.224.52.7",
   };
   try {
-    let response = await axios.post("3.88.132.229:80/begin", data, {
+    let response = await axios.post("http://3.88.132.229:80/begin", data, {
       headers: {
         "content-type": "application/json",
       },
@@ -23,9 +23,10 @@ const beginRequest = async () => {
 const storeDataInS3 = async (req, res) => {
   try {
     const { data } = req.body;
-    console.log(data);
-
+    //console.log(data);
+    console.log("Data ==========" + data);
     createFileWithRobData(data);
+    console.log("File created.");
 
     const file = {
       path: "./files/rob.txt",
@@ -33,10 +34,11 @@ const storeDataInS3 = async (req, res) => {
     };
 
     let s3_dataLocation = uploadRobData(file);
+    console.log("Location:" + s3_dataLocation);
   } catch (err) {
     console.error(err);
   }
-  return res.status(StatusCodes.OK).send({ s3_uri: s3_dataLocation });
+  return res.status(StatusCodes.OK).send({ s3uri: s3_dataLocation });
 };
 
 const createFileWithRobData = async (data) => {
@@ -45,7 +47,7 @@ const createFileWithRobData = async (data) => {
       console.error(err);
       return;
     }
-    //console.log(result);
+    console.log(result);
   });
 };
 
