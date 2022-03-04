@@ -21,6 +21,7 @@ const beginRequest = async () => {
 };
 
 const storeDataInS3 = async (req, res) => {
+  let s3_dataLocation;
   try {
     const { data } = req.body;
     //console.log(data);
@@ -33,12 +34,12 @@ const storeDataInS3 = async (req, res) => {
       filename: "rob.txt",
     };
 
-    let s3_dataLocation = uploadRobData(file);
+    s3_dataLocation = await uploadRobData(file);
     console.log("Location:" + s3_dataLocation);
   } catch (err) {
     console.error(err);
   }
-  return res.status(StatusCodes.OK).send({ s3uri: s3_dataLocation });
+  return res.status(StatusCodes.OK).send({ s3uri: s3_dataLocation.Location });
 };
 
 const createFileWithRobData = async (data) => {
